@@ -1,6 +1,8 @@
 #include <iostream>
 #include <unistd.h>
 #include <iomanip>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
@@ -107,9 +109,13 @@ public:
     }
 
     void showRent() {
+        // Generate a random invoice number
+        srand(time(0));
+        int invoiceNo = rand() % 1000000 + 1;
+
         cout << "\n\t\t                       Car Rental - Customer Invoice                  " << endl;
         cout << "\t\t    ///////////////////////////////////////////////////////////" << endl;
-        cout << "\t\t    | Invoice No. :------------------|" << setw(10) << "#Cnb81353" << " |" << endl;
+        cout << "\t\t    | Invoice No. :------------------|" << setw(10) << "#" <<invoiceNo << " |" << endl;
         cout << "\t\t    | Customer Name:-----------------|" << setw(10) << name << " |" << endl;
         cout << "\t\t    | Customer Email:----------------|" << setw(10) << email << " |" << endl;
         cout << "\t\t    | Customer Phone Number :--------|" << setw(10) << phoneNumber << " |" << endl;
@@ -159,7 +165,7 @@ private:
 
 class welcome {
 public:
-    void welcum() {
+    void displayWelcomeMessage() {
         cout << "\nWelcome to the Car Rental System!" << endl;
         sleep(1);
         cout << "\nStarting the program, please wait....." << endl;
@@ -171,8 +177,8 @@ public:
 };
 
 int main() {
-    welcome obj1;
-    obj1.welcum();
+    welcome welcomeMessage;
+    welcomeMessage.displayWelcomeMessage();
 
     rent obj2;
     obj2.inputData();
