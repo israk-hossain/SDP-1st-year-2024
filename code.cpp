@@ -1,8 +1,10 @@
 #include <iostream>
-#include <unistd.h>
 #include <iomanip>
 #include <ctime>
 #include <cstdlib>
+#include <fstream>
+#include <sstream>
+#include <unistd.h>
 
 using namespace std;
 
@@ -38,34 +40,9 @@ public:
         cin >> password;
         cout << endl;
 
-        do {
-            cout << "\t\t\t\tPlease Select a Car" << endl;
-            cout << "\t\t\t\tEnter 'A' for Tesla 20011." << endl;
-            cout << "\t\t\t\tEnter 'B' for Hyundai 2015." << endl;
-            cout << "\t\t\t\tEnter 'C' for Ford 2017." << endl;
-            cout << "\t\t\t\tChoose a Car from the above options: ";
-            cin >> carmodel;
-            cout << endl;
-
-            cout << "--------------------------------------------------------------------------" << endl;
-            if (carmodel == "A") {
-                system("CLS");
-                cout << "You have chosen Tesla model 2011" << endl;
-                displayCarDetails();
-            } else if (carmodel == "B") {
-                system("CLS");
-                cout << "You have chosen Hyundai model 2015" << endl;
-                displayCarDetails();
-            } else if (carmodel == "C") {
-                system("CLS");
-                cout << "You have chosen Ford model 2017" << endl;
-                displayCarDetails();
-            } else {
-                cout << "Invalid Car Model. Please try again!" << endl;
-            }
-            sleep(2);
-        } while (carmodel != "A" && carmodel != "B" && carmodel != "C");
-
+        // Car selection
+        selectCar();
+        
         cout << "--------------------------------------------------------------------------" << endl;
         cout << "Please provide following information: " << endl;
         cout << "Please select a Car No. : ";
@@ -76,6 +53,7 @@ public:
     }
 
     void calculate() {
+        // Rent calculation
         sleep(1);
         system("CLS");
         cout << "Calculating rent. Please wait......" << endl;
@@ -90,6 +68,7 @@ public:
     }
 
     void displayCarDetails() {
+        // Display car details
         if (carmodel == "A") {
             cout << "Tesla Model 2011 Details:" << endl;
             cout << "---------------------------------" << endl;
@@ -113,9 +92,10 @@ public:
         srand(time(0));
         int invoiceNo = rand() % 1000000 + 1;
 
+        // Display rent details
         cout << "\n\t\t                       Car Rental - Customer Invoice                  " << endl;
         cout << "\t\t    ///////////////////////////////////////////////////////////" << endl;
-        cout << "\t\t    | Invoice No. :------------------|" << setw(10) << "#" <<invoiceNo << " |" << endl;
+        cout << "\t\t    | Invoice No. :------------------|" << setw(10) << "#" << invoiceNo << " |" << endl;
         cout << "\t\t    | Customer Name:-----------------|" << setw(10) << name << " |" << endl;
         cout << "\t\t    | Customer Email:----------------|" << setw(10) << email << " |" << endl;
         cout << "\t\t    | Customer Phone Number :--------|" << setw(10) << phoneNumber << " |" << endl;
@@ -141,6 +121,20 @@ public:
         system("CLS");
 
         cout << "Thank you for choosing our Car Rental Service!" << endl;
+
+        // Save rent information to a file
+        ofstream rentFile("rent.json", ios::app);
+        rentFile << "{\n"
+                 << "\t\"InvoiceNo\": " << invoiceNo << ",\n"
+                 << "\t\"CustomerName\": \"" << name << "\",\n"
+                 << "\t\"CustomerEmail\": \"" << email << "\",\n"
+                 << "\t\"CustomerPhoneNumber\": \"" << phoneNumber << "\",\n"
+                 << "\t\"CarModel\": \"" << carmodel << "\",\n"
+                 << "\t\"CarNumber\": \"" << carnumber << "\",\n"
+                 << "\t\"DaysRented\": " << days << ",\n"
+                 << "\t\"RentalFee\": " << rentalfee << "\n"
+                 << "}\n\n";
+        rentFile.close();
     }
 
 private:
@@ -151,39 +145,68 @@ private:
         cout << "\n\t\t\t\t\t\t     LOGIN \n";
         cout << "\t\t\t\t\t------------------------------\n\n";
         cout << "\t\t\t\t\tEnter Password: ";
+        // Hiding password input
         cin >> pass;
         cout << endl;
 
         if (pass != "bubt") {
             cout << "\n\n\t\t\t\t\t\t\tAccess Aborted...\n\t\t\t\t\t\t\tPlease Try Again\n\n";
-            sleep(1);
+sleep(1);
+system("CLS");
+login();
+}
+}
+void selectCar() {
+    do {
+        cout << "\t\t\t\tPlease Select a Car" << endl;
+        cout << "\t\t\t\tEnter 'A' for Tesla 20011." << endl;
+        cout << "\t\t\t\tEnter 'B' for Hyundai 2015." << endl;
+        cout << "\t\t\t\tEnter 'C' for Ford 2017." << endl;
+        cout << "\t\t\t\tChoose a Car from the above options: ";
+        cin >> carmodel;
+        cout << endl;
+
+        cout << "--------------------------------------------------------------------------" << endl;
+        if (carmodel == "A") {
             system("CLS");
-            login();
+            cout << "You have chosen Tesla model 2011" << endl;
+            displayCarDetails();
+        } else if (carmodel == "B") {
+            system("CLS");
+            cout << "You have chosen Hyundai model 2015" << endl;
+            displayCarDetails();
+        } else if (carmodel == "C") {
+            system("CLS");
+            cout << "You have chosen Ford model 2017" << endl;
+            displayCarDetails();
+        } else {
+            cout << "Invalid Car Model. Please try again!" << endl;
         }
-    }
+        sleep(2);
+    } while (carmodel != "A" && carmodel != "B" && carmodel != "C");
+}
 };
 
 class welcome {
 public:
-    void displayWelcomeMessage() {
-        cout << "\nWelcome to the Car Rental System!" << endl;
-        sleep(1);
-        cout << "\nStarting the program, please wait....." << endl;
-        sleep(1);
-        cout << "\nLoading up files....." << endl;
-        sleep(1);
-        system("CLS");
-    }
+void displayWelcomeMessage() {
+cout << "\nWelcome to the Car Rental System!" << endl;
+sleep(1);
+cout << "\nStarting the program, please wait....." << endl;
+sleep(1);
+cout << "\nLoading up files....." << endl;
+sleep(1);
+system("CLS");
+}
 };
 
 int main() {
-    welcome welcomeMessage;
-    welcomeMessage.displayWelcomeMessage();
+welcome welcomeMessage;
+welcomeMessage.displayWelcomeMessage();
+rent obj2;
+obj2.inputData();
+obj2.calculate();
+obj2.showRent();
 
-    rent obj2;
-    obj2.inputData();
-    obj2.calculate();
-    obj2.showRent();
-
-    return 0;
+return 0;
 }
