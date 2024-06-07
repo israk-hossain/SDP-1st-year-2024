@@ -1,11 +1,9 @@
 #include <iostream>
 #include <iomanip>
-#include <ctime>
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
 #include <unistd.h>
-#include <vector>
 
 using namespace std;
 
