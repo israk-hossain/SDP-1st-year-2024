@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <ctime>
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
@@ -7,7 +8,7 @@
 
 using namespace std;
 
-class User {
+class User {            
 protected:
     string name;
     string email;
@@ -25,7 +26,7 @@ public:
         string adminEmail = "bubt@gmail.com";
         string adminPassword = "bubt52";
 
-        cout << "\n\n\n\n\n\n\n\n\t\t\t\t\t       CAR RENTAL SYSTEM \n\n";
+        cout << "\n\n\n\n\n\n\n\n\t\t\t\t\t     CAR RENTAL SYSTEM \n\n";
         cout << "\t\t\t\t\t------------------------------";
         cout << "\n\t\t\t\t\t\t     ADMIN LOGIN \n";
         cout << "\t\t\t\t\t------------------------------\n\n";
@@ -119,7 +120,6 @@ public:
             rentalfee = days * 5000;
         else if (carmodel == "3")
             rentalfee = days * 7500;
-      
         else if (carmodel == "4")
             rentalfee = days * 6000;
         else if (carmodel == "5")
@@ -333,7 +333,7 @@ public:
     void displayWelcomeMessage() {
         system("clear");
         cout << "\nWelcome to the Car Rental System!" << endl;
-        sleep(1);
+        sleep(2);
         cout << "\nStarting the program, please wait....." << endl;
         sleep(1);
         cout << "\nLoading up files....." << endl;
@@ -347,7 +347,7 @@ int main() {
     system("clear");
     // Choose whether admin or customer
     cout << "Are you an admin or a customer?" << endl;
-    cout << "Enter '1' for admin, '2' for customer: ";
+    cout << "Enter '1' for admin,'2' for customer: ";
     int choice;
     cin >> choice;
 
