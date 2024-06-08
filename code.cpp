@@ -81,11 +81,13 @@ public:
 
     void inputData() override {
         cout << "\t\t\t\tPlease Enter your Name: ";
-        cin >> name;
+        cin.ignore();
+        getline(cin, name); 
         cout << endl;
 
         cout << "\t\t\t\tPlease Enter your Email: ";
-        cin >> email;
+        cin.ignore();
+        getline(cin, email);
         cout << endl;
 
         cout << "\t\t\t\tPlease Enter your Phone Number: ";
@@ -370,4 +372,3 @@ int main() {
 
     return 0;
 }
-
