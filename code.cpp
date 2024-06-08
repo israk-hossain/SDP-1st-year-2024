@@ -221,7 +221,7 @@ public:
         // Display rent details
         cout << "\n\t\t                       Car Rental - Customer Invoice                  " << endl;
         cout << "\t\t    ///////////////////////////////////////////////////////////" << endl;
-        cout << "\t\t    | Invoice No. :------------------|" << setw(10) << "#" << invoiceNo << " |" << endl;
+        cout << "\t\t    | Invoice No. :------------------|" << setw(4.5) << "#" << invoiceNo << " |" << endl;
         cout << "\t\t    | Customer Name:-----------------|" << setw(10) << name << " |" << endl;
         cout << "\t\t    | Customer Email:----------------|" << setw(10) << email << " |" << endl;
         cout << "\t\t    | Customer Phone Number :--------|" << setw(10) << phoneNumber << " |" << endl;
